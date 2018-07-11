@@ -1,17 +1,21 @@
 # Prerequisites
 *.d
+
 # Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
+
 # Precompiled Headers
 *.gch
 *.pch
+
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
+
 # Fortran module files
 *.mod
 *.smod
@@ -26,11 +30,22 @@
 *.exe
 *.out
 *.app
+*.dll
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
@@ -53,10 +68,6 @@ ExportedObj/
 *.opendb
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.png.meta
-*.jpg.meta
 *.meta
 
 # Unity3D Generated File On Crash Reports
