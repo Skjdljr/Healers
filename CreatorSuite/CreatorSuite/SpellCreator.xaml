@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="CreatorSuite.SpellCreator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CreatorSuite"
+             mc:Ignorable="d" 
+             d:DesignHeight="467.04" d:DesignWidth="619">
+    <Grid>
+        <Grid Background="#FFE5E5E5" Margin="0,0,0,-38">
+            <Button Content="Select Image" HorizontalAlignment="Left" Margin="281,242,0,0" VerticalAlignment="Top" Width="82" Click="OnSelectImageClicked" Height="22"/>
+            <TextBlock x:Name="titleText" HorizontalAlignment="Left" Margin="175,10,0,0" TextWrapping="Wrap" Text="Spell Creator" VerticalAlignment="Top" Height="37" Width="254" TextAlignment="Center" FontSize="20"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="140" Margin="255,97,0,0" VerticalAlignment="Top" Width="140">
+                <Image x:Name="testerImage" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="140" Stretch="Fill" Margin="-1"/>
+            </Border>
+            <TextBlock HorizontalAlignment="Right" Margin="0,28,44,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="96" Height="16" Text="Created Spells" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.083"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <ListBox x:Name="ListOfSpells" HorizontalAlignment="Right" Height="346" Margin="0,54,10,0" VerticalAlignment="Top" Width="176" ItemsSource="{Binding spellsToCreate}" IsSynchronizedWithCurrentItem="True" SelectionChanged="OnSpellSelected" ItemTemplate="{DynamicResource SpellListTemplate}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemContainerStyle="{DynamicResource SimpleListBoxItem}">
+                <ListBox.Background>
+                    <ImageBrush/>
+                </ListBox.Background>
+            </ListBox>
+            <Button Content="Delete" HorizontalAlignment="Right" Margin="0,405,107,0" VerticalAlignment="Top" Width="50" Click="OnDeleteClicked" HorizontalContentAlignment="Center" Height="22"/>
+            <Button Content="Rename" HorizontalAlignment="Right" Margin="0,405,46,0" VerticalAlignment="Top" Width="50" Click="OnRenameClicked" HorizontalContentAlignment="Center" Height="22"/>
+            <Menu x:Name="menu" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Background="#FFE5E5E5" Margin="5,0,0,0">
+                <MenuItem x:Name="FileMenu" Header="File" RenderTransformOrigin="0.5,0.5" Width="40" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+                    <MenuItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.039"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </MenuItem.RenderTransform>
+                    <MenuItem x:Name="Save" Header="Save" HorizontalAlignment="Left" Width="135" Click="Save_Click"/>
+                    <MenuItem x:Name="Export" Header="Export" HorizontalAlignment="Left" Width="135" Click="Export_Click" />
+                    <MenuItem Header="Exit" HorizontalAlignment="Left" Width="145" Click="MenuItem_Click"/>
+                </MenuItem>
+            </Menu>
+            <UniformGrid Margin="2,45,0,45" Width="103" HorizontalAlignment="Left" Columns="1">
+                <TextBlock x:Name="textBlock" Margin="0,0,22,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
+                <TextBlock Margin="0,0,21,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Text="Power"/><Run Text=":"/></TextBlock>
+                <TextBlock Margin="0,0,21,0" TextWrapping="Wrap" Text="Resource Cost:" VerticalAlignment="Top" Height="16"/>
+                <TextBlock Margin="0,0,21,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Text="Cool Down"/><LineBreak/><Run/></TextBlock>
+                <TextBlock Margin="0,0,21,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Text="Cast Time"/>
+                <TextBlock x:Name="radius_text" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="38" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"><Run Text="Radius:"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="duration_text" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Margin="0,0,54,0"><Run Text="Duration:"/><LineBreak/><Run/></TextBlock>
+                <TextBlock x:Name="interval_text" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" Width="49" Text="Interval:" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+                <TextBlock x:Name="spellSchool_text" Margin="0,0,32,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Text="Spell School:"/>
+                <TextBlock Margin="0,0,34,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Text="Class Type:" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.083"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <TextBlock x:Name="effect_text" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Text="Effect:" Height="16" Width="33"/>
+                <TextBlock Margin="0,0,42,18" TextWrapping="Wrap"><Run Text="Spell Type"/><Run Text=":"/></TextBlock>
+            </UniformGrid>
+            <Button x:Name="button" Content="Create Spell" HorizontalAlignment="Left" Margin="255,391,0,0" VerticalAlignment="Top" Width="135" Height="50" Click="CreateSpell_Click"/>
+        </Grid>
+        <UniformGrid HorizontalAlignment="Left" Margin="85,45,0,10" Width="150" Columns="1">
+            <TextBox x:Name="spellName" Height="28" Margin="0,0,30,0" TextWrapping="Wrap" Text="Spell" VerticalAlignment="Top" TabIndex="0" MaxLines="1" MaxLength="21"/>
+            <TextBox x:Name="power" Height="20" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TabIndex="1" MaxLines="1" MaxLength="4" IsUndoEnabled="True" TextChanged="OnFloatInput"/>
+            <TextBox x:Name="resourceCost" Height="20" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TabIndex="2" MaxLines="1" MaxLength="4" TextChanged="OnPositiveNumberInput"/>
+            <TextBox x:Name="coolDown" Height="20" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TabIndex="2" MaxLines="1" MaxLength="4" TextChanged="OnFloatInput"/>
+            <TextBox x:Name="castTime" Height="20" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TabIndex="2" MaxLines="1" MaxLength="4" TextChanged="OnFloatInput"/>
+            <TextBox x:Name="radiusField" Height="23" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TextChanged="OnPositiveNumberInput" MaxLength="4" MaxLines="1"/>
+            <TextBox x:Name="durationField" Height="23" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TextChanged="OnFloatInput" MaxLength="4" MaxLines="1"/>
+            <TextBox x:Name="intervalField" Height="23" Margin="0,0,30,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TextChanged="OnFloatInput" MaxLength="4" MaxLines="1"/>
+            <ComboBox x:Name="spellSchool" Margin="0,0,30,0" Style="{DynamicResource SimpleComboBox}" VerticalAlignment="Top" Height="22" TabIndex="4" SelectedIndex="0" d:LayoutOverrides="VerticalAlignment">
+                <ComboBoxItem Content="Base"/>
+                <ComboBoxItem Content="Physical"/>
+                <ComboBoxItem Content="Poision"/>
+                <ComboBoxItem Content="Lightning"/>
+                <ComboBoxItem Content="Fire"/>
+                <ComboBoxItem Content="Ice"/>
+                <ComboBoxItem Content="Will"/>
+            </ComboBox>
+            <ComboBox x:Name="classType" Margin="0,0,30,0" Style="{DynamicResource SimpleComboBox}" VerticalAlignment="Top" Height="22" TabIndex="4" SelectedIndex="0" d:LayoutOverrides="VerticalAlignment">
+                <ComboBoxItem Content="Any"/>
+                <ComboBoxItem Content="Warrior"/>
+                <ComboBoxItem Content="Mage"/>
+                <ComboBoxItem Content="Rogue"/>
+                <ComboBoxItem Content="Druid"/>
+                <ComboBoxItem Content="Priest"/>
+            </ComboBox>
+            <ComboBox x:Name="effectType" Margin="0,0,30,0" Style="{DynamicResource SimpleComboBox}" VerticalAlignment="Top" Height="22" TabIndex="4" SelectedIndex="0" d:LayoutOverrides="VerticalAlignment">
+                <ComboBoxItem Content="Health"/>
+                <ComboBoxItem Content="Armor"/>
+                <ComboBoxItem Content="Resource"/>
+                <ComboBoxItem Content="Resistance"/>
+                <ComboBoxItem Content="Action Speed"/>
+            </ComboBox>
+            <ComboBox x:Name="spellType" Margin="0,0,30,0" Style="{DynamicResource SimpleComboBox}" VerticalAlignment="Top" Height="22" TabIndex="4" SelectedIndex="0" SelectionChanged="OnSpellTypeChanged" d:LayoutOverrides="VerticalAlignment">
+                <ComboBoxItem Content="Heal"/>
+                <ComboBoxItem Content="Buff"/>
+                <ComboBoxItem Content="Debuff"/>
+                <ComboBoxItem Content="Damage"/>
+                <ComboBoxItem Content="Crowd Control"/>
+            </ComboBox>
+        </UniformGrid>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,55 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:CreatorSuite" mc:Ignorable="d" x:Class="CreatorSuite.MainWindow"
+		Title="Creator Suite 1.0" Width="680.801" Height="548.001" Background="#FF1A1A1A">
+
+    <Grid Margin="0,0,2,2.001" RenderTransformOrigin="0.497,0.705">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="397*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="172*"/>
+            <ColumnDefinition Width="369*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="tabControl" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="514" Margin="0,2,0,0" VerticalAlignment="Top" Width="671" Grid.RowSpan="2" Background="#FF8C8E94">
+            <TabItem Header="Spells" Margin="0,0,-2,-3" BorderBrush="#FF4107A8">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FF4107A8" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <local:SpellCreator/>
+            </TabItem>
+            <TabItem Header="Items" Margin="0,0,-4,-3" BorderBrush="#FFB2EC4E">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FFB2EC4E" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <local:ItemCreator/>
+            </TabItem>
+            <TabItem Header="Enemies" Margin="0,0,-8,-3" HorizontalAlignment="Left" Width="66" BorderBrush="#FFF00505">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                        <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                        <GradientStop Color="#FFF00505" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <local:EnemyCreator/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

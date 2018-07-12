@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CreatorSuite.EnemyCreator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CreatorSuite"
+             mc:Ignorable="d" 
+             d:DesignHeight="462.04" d:DesignWidth="610">
+    <Grid>
+        <Grid Background="#FFE5E5E5" Margin="0">
+            <TextBlock x:Name="EnemyTitle" HorizontalAlignment="Left" Margin="151,10,0,0" TextWrapping="Wrap" Text="Enemy Creator" VerticalAlignment="Top" Height="37" Width="254" TextAlignment="Center" FontSize="20"/>
+            <Menu x:Name="menu" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="100" Margin="5,0,0,0" Background="{x:Null}">
+                <MenuItem x:Name="FileMenu" Header="File" RenderTransformOrigin="0.5,0.5" Width="40" Height="20" VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+                    <MenuItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.039"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </MenuItem.RenderTransform>
+                    <MenuItem x:Name="Save" Header="Save" HorizontalAlignment="Left" Width="135" Click="Save_Click" RenderTransformOrigin="0.5,0.502"/>
+                    <MenuItem x:Name="Export" Header="Export" HorizontalAlignment="Left" Width="135" Click="Export_Click" />
+                    <MenuItem Header="Exit" HorizontalAlignment="Left" Width="145" Click="Exit_Click"/>
+                </MenuItem>
+            </Menu>
+            <TextBlock HorizontalAlignment="Left" Margin="20,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" Height="16"><Run Text="Name:"/><LineBreak/><Run/></TextBlock>
+            <TextBox x:Name="characterName" HorizontalAlignment="Left" Height="28" Margin="107,64,0,0" TextWrapping="Wrap" Text="Bob" VerticalAlignment="Top" Width="120" TabIndex="0" MaxLines="1" MaxLength="21"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

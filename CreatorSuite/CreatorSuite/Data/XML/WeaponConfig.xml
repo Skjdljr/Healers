@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Weapons>
+  <Weapon itemName="Test1" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <minDmgLow>1.1</minDmgLow>
+    <minDmgHigh>1.1</minDmgHigh>
+    <maxDmgLow>1.1</maxDmgLow>
+    <maxDmgHigh>1.1</maxDmgHigh>
+    <weaponSpeed>1.1</weaponSpeed>
+  </Weapon>
+  <Weapon itemName="Test2" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <minDmgLow>1.1</minDmgLow>
+    <minDmgHigh>1.1</minDmgHigh>
+    <maxDmgLow>1.1</maxDmgLow>
+    <maxDmgHigh>1.1</maxDmgHigh>
+    <weaponSpeed>1.1</weaponSpeed>
+  </Weapon>
+  <Weapon itemName="Default Weapon" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <minDmgLow>1.1</minDmgLow>
+    <minDmgHigh>1.1</minDmgHigh>
+    <maxDmgLow>1.1</maxDmgLow>
+    <maxDmgHigh>1.1</maxDmgHigh>
+    <weaponSpeed>1.1</weaponSpeed>
+  </Weapon>
+</Weapons>

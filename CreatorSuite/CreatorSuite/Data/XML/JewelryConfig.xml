@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Jewelrys>
+  <Jewelry itemName="TestJewel" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <effectedStat>0</effectedStat>
+    <value>0</value>
+  </Jewelry>
+  <Jewelry itemName="TestJewel0" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <effectedStat>0</effectedStat>
+    <value>0</value>
+  </Jewelry>
+</Jewelrys>

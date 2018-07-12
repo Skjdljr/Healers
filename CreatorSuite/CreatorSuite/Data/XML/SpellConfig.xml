@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SpellConfig>
+  <Spell Name="joel" ID="0">
+    <resourceCost>0</resourceCost>
+    <power>0</power>
+    <coolDown>0</coolDown>
+    <castTime>0</castTime>
+    <SpellEffects>
+      <effect />
+      <radius>0</radius>
+      <duration>0</duration>
+      <interval>0</interval>
+      <spellType />
+      <spellSchool />
+    </SpellEffects>
+    <classType>Any</classType>
+    <imagePath>..\..\..\..\Assets\GameSprites\SPELLS\aMage.png</imagePath>
+  </Spell>
+  <Spell Name="joel2" ID="0">
+    <resourceCost>0</resourceCost>
+    <power>0</power>
+    <coolDown>0</coolDown>
+    <castTime>0</castTime>
+    <SpellEffects>
+      <effect>Health</effect>
+      <radius>0</radius>
+      <duration>0</duration>
+      <interval>0</interval>
+      <spellType />
+      <spellSchool />
+    </SpellEffects>
+    <classType>Any</classType>
+    <imagePath>..\..\..\..\Assets\GameSprites\SPELLS\aMage.png</imagePath>
+  </Spell>
+</SpellConfig>

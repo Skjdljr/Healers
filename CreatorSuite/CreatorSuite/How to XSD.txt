@@ -1,0 +1,10 @@
+Take xml file drop in VS.
+Use xml. Create schema
+Save it somewhere
+Open vs dev. command prompt
+
+**** NOTE no space with the /O:(out destination) import to solution
+***NOTE OH not ZERO
+xsd /c location(c:\desktop) /o:(destination) ie.
+
+xsd /c C:\Users\faiellaj\Desktop\Mine\SpellCreator\SpellCreator\Data

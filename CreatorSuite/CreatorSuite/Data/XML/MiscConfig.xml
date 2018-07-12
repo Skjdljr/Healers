@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Miscs>
+  <Misc itemName="TestMisc" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <displayText>0</displayText>
+  </Misc>
+  <Misc itemName="TestMisc1" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <displayText>0</displayText>
+  </Misc>
+  <Misc itemName="TestMisc3" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <displayText>0</displayText>
+  </Misc>
+</Miscs>

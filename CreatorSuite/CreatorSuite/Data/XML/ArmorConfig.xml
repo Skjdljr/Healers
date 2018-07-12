@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Armors>
+  <Armor itemName="TestArmor" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <armorMin>0</armorMin>
+    <armorMax>100</armorMax>
+  </Armor>
+  <Armor itemName="TestArmor2" id="0">
+    <isEquipped>0</isEquipped>
+    <rarity>0</rarity>
+    <itemClass>0</itemClass>
+    <type>0</type>
+    <imagePath>x.png</imagePath>
+    <armorMin>0</armorMin>
+    <armorMax>100</armorMax>
+  </Armor>
+</Armors>
