@@ -1,34 +1,20 @@
 using UnityEngine;
 
 public class ItemBase : MonoBehaviour
-{
-    //Can easily break these apart and put each one in its respectable class w.e
-    enum ITEM_CLASS
-    { /*Armor*/
-        HELMET = 0, GLOVES, CHEST, PANTS, BELT, BOOTS, SHOULDERS,
-        /*Weapon*/
-        AXE = 7, DAGGER, MACE, SWORD, WAND,
-        /*Jewelry*/
-        NECKLACE = 12, EAR_RING, RING, BRACELET,
-        /*Misc*/
-        BOOK = 16, PAPER, SHARD, TOKEN, TRINKET
-    }
+{    
+    //Each item type will have its own classifications
+    //for weapons  enum ITEM_CLASS 1 | 2 handed
+    //for armor... Cloth,Leather,Plate
+    //for jewel... Necklace, earing, ring
 
-    enum ITEM_TYPE
-    { /*Armor*/
-        CLOTH = 0, LEATHER , PLATE,
-        /*Weapon*/
-        ONE_HANDED = 3, TWO_HANDED,
-        JEWELRY = 5,
-        MISC = 6
-    }
+    //enum ITEM_TYPE { ARMOR, WEAPON, JEWELRY, MISC }
+    //enum ITEM_RARITY { NORMAL, MAGIC, UNIQUE, SET, QUEST }
 
-    enum ITEM_RARITY { NORMAL, MAGIC, UNIQUE, SET, QUEST }
+    //ITEM_RARITY rarity;
+    //ITEM_TYPE type;
 
-    public int id;
-    public bool isEquipped;
-    public string itemName;
-    ITEM_RARITY rarity;
-    ITEM_CLASS item_Class;
-    ITEM_TYPE type;
+    int id { get; set; }
+    bool isEquipped { get; set; }
+    int itemSlot { get; set; }
+    string itemName { get; set; }
 }
