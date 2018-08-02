@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
 
     ItemBase GetItem(string itemName) //'possibly have it take in the id as well'
     {
-        return Items.Where(i => i.itemName == itemName) as ItemBase;
+        return Items.Where(i => i._itemName == itemName) as ItemBase;
     }
 
     ItemBase DropItem(string itemName)

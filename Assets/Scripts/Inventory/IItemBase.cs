@@ -13,10 +13,7 @@ public interface IItemBase
     //ITEM_RARITY rarity;
     //ITEM_TYPE type;
 
-    
     int id { get; set; }
-    bool isEquipped { get; set; }
     int itemSlot { get; set; }
     string itemName { get; set; }
-
 }
