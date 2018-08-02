@@ -27,6 +27,8 @@ public class BaseCharacter : MonoBehaviour
     public delegate void CharacterSlected(BaseCharacter character);
     public CharacterSlected OnCharacterSelected;
 
+    private Image healthBarFill;
+
     void Start()
     {
         //Set the buttons clicked method via code;
@@ -79,6 +81,10 @@ public class BaseCharacter : MonoBehaviour
         partyType = type;
         data = _char;
 
+        HealthBar.onValueChanged.AddListener(OnHealthChanged);
+        ArmorBar.onValueChanged.AddListener(OnArmorChanged);
+        ResourceBar.onValueChanged.AddListener(OnResourceChanged);
+
         if (data != null)
         {
             characterState = CHARACTER_STATE.Idle;
@@ -87,18 +93,39 @@ public class BaseCharacter : MonoBehaviour
             ArmorBar.value = (data.armor / data.maxArmor);
             ResourceBar.value = (data.resource / data.maxResource);
             SetDisplayImage();
+
+
+            //Get the image of the bar
+            healthBarFill = HealthBar.GetComponent<Image>();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    const float LOW_PERCENT = 0.25f;
+    const float MED_PERCENT = 0.70f;
+    Color MaxHealthColor = Color.green;
+    Color MinHealthColor = Color.red;
+
+    // public Image Fill
+    public void OnHealthChanged(float value)
     {
         if (data != null)
         {
+            //possibly value / maxHealth ie. HealthBar.value = (value / data.maxHealth);
             HealthBar.value = (data.health / data.maxHealth);
-            ArmorBar.value = (data.armor / data.maxArmor);
-            ResourceBar.value = (data.resource / data.maxResource);
+
+            //change color
+            healthBarFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)value / data.maxHealth);
         }
+    }
+
+    public void OnArmorChanged(float value)
+    {
+        ArmorBar.value = (data.armor / data.maxArmor);
+    }
+
+    public void OnResourceChanged(float value)
+    {
+        ResourceBar.value = (data.resource / data.maxResource);
     }
 
     public virtual void Attack()

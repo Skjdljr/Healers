@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemBase : MonoBehaviour
+public interface IItemBase
 {
     //Each item type will have its own classifications
     //for weapons  enum ITEM_CLASS 1 | 2 handed
@@ -13,8 +13,10 @@ public class ItemBase : MonoBehaviour
     //ITEM_RARITY rarity;
     //ITEM_TYPE type;
 
-    public int id { get; set; }
-    public bool isEquipped { get; set; }
-    public int itemSlot { get; set; }
-    public string itemName { get; set; }
+    
+    int id { get; set; }
+    bool isEquipped { get; set; }
+    int itemSlot { get; set; }
+    string itemName { get; set; }
+
 }
