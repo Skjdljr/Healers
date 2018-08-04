@@ -39,22 +39,28 @@ public class BattleController : MonoBehaviour
 
     private void CreateTestLootTable()
     {
-        RDSTable subtable1 = new RDSTable();
-        RDSTable subtable2 = new RDSTable();
-        RDSTable subtable3 = new RDSTable();
-        t.AddEntry(subtable1, 10); // we add a table to a table thanks to the interfaces
-        t.AddEntry(subtable2, 10);
-        t.AddEntry(subtable3, 10);
+        //RDSTable subtable1 = new RDSTable();
+        //RDSTable subtable2 = new RDSTable();
+        //RDSTable subtable3 = new RDSTable();
+        //t.AddEntry(subtable1, 10); // we add a table to a table thanks to the interfaces
+        //t.AddEntry(subtable2, 10);
+        //t.AddEntry(subtable3, 10);
 
-        subtable1.AddEntry(new ItemBase("Table 1 - Item 1"), 10);
-        subtable1.AddEntry(new ItemBase("Table 1 - Item 2"), 10);
-        subtable1.AddEntry(new ItemBase("Table 1 - Item 3"), 10);
-        subtable2.AddEntry(new ItemBase("Table 2 - Item 1"), 10);
-        subtable2.AddEntry(new ItemBase("Table 2 - Item 2"), 10);
-        subtable2.AddEntry(new ItemBase("Table 2 - Item 3"), 10);
-        subtable3.AddEntry(new ItemBase("Table 3 - Item 1"), 10);
-        subtable3.AddEntry(new ItemBase("Table 3 - Item 2"), 10);
-        subtable3.AddEntry(new ItemBase("Table 3 - Item 3"), 10);
+        //subtable1.AddEntry(new ItemBase("Table 1 - Item 1"), 10);
+        //subtable1.AddEntry(new ItemBase("Table 1 - Item 2"), 10);
+        //subtable1.AddEntry(new ItemBase("Table 1 - Item 3"), 10);
+        //subtable2.AddEntry(new ItemBase("Table 2 - Item 1"), 10);
+        //subtable2.AddEntry(new ItemBase("Table 2 - Item 2"), 10);
+        //subtable2.AddEntry(new ItemBase("Table 2 - Item 3"), 10);
+        //subtable3.AddEntry(new ItemBase("Table 3 - Item 1"), 10);
+        //subtable3.AddEntry(new ItemBase("Table 3 - Item 2"), 10);
+        //subtable3.AddEntry(new ItemBase("Table 3 - Item 3"), 10);
+
+        t.AddEntry(new ItemBase("Item 1"), 10);
+        t.AddEntry(new ItemBase("Item 2"), 10);
+        t.AddEntry(new ItemBase("Item 3"), 10);
+        t.AddEntry(new ItemBase("Item 4"), 10);
+        t.AddEntry(new ItemBase("Item 5"), 10);
 
     }
 
@@ -112,7 +118,7 @@ public class BattleController : MonoBehaviour
 
             ItemBase m6 = new ItemBase("Item 6"); // We need this item later
             t.AddEntry(m6, 10);
-            
+
             // Tell the table we want to have 2 out of 6
             t.rdsCount = 2;
             
