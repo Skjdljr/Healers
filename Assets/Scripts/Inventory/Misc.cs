@@ -2,7 +2,7 @@ public class Misc : ItemBase
 {
     private string _displayText;
 
-    public Misc(ITEM_RARITY rarity, int id, int itemSlot, string itemName, string displayText) : base(rarity, id, itemSlot, itemName)
+    public Misc(string itemName, ITEM_RARITY rarity, int id, int itemSlot, string displayText) : base(itemName, rarity, id, itemSlot)
     {
         DisplayText = displayText;
     }

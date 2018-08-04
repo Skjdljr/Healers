@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using rds;
 
 public class BattleController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class BattleController : MonoBehaviour
     private bool activated = false;
     private Party[] parties;
 
+    //RDS Table
+    RDSTable t = new RDSTable();
+
     private void Start()
     {
         parties = FindObjectsOfType<Party>();
@@ -27,7 +31,31 @@ public class BattleController : MonoBehaviour
             party.OnDefeated += PartyDefeated;
         }
 
+        //test loot
+        CreateTestLootTable();
+
         StartCoroutine(IntroCountdown());
+    }
+
+    private void CreateTestLootTable()
+    {
+        RDSTable subtable1 = new RDSTable();
+        RDSTable subtable2 = new RDSTable();
+        RDSTable subtable3 = new RDSTable();
+        t.AddEntry(subtable1, 10); // we add a table to a table thanks to the interfaces
+        t.AddEntry(subtable2, 10);
+        t.AddEntry(subtable3, 10);
+
+        subtable1.AddEntry(new ItemBase("Table 1 - Item 1"), 10);
+        subtable1.AddEntry(new ItemBase("Table 1 - Item 2"), 10);
+        subtable1.AddEntry(new ItemBase("Table 1 - Item 3"), 10);
+        subtable2.AddEntry(new ItemBase("Table 2 - Item 1"), 10);
+        subtable2.AddEntry(new ItemBase("Table 2 - Item 2"), 10);
+        subtable2.AddEntry(new ItemBase("Table 2 - Item 3"), 10);
+        subtable3.AddEntry(new ItemBase("Table 3 - Item 1"), 10);
+        subtable3.AddEntry(new ItemBase("Table 3 - Item 2"), 10);
+        subtable3.AddEntry(new ItemBase("Table 3 - Item 3"), 10);
+
     }
 
     private void Update()
@@ -74,11 +102,39 @@ public class BattleController : MonoBehaviour
         if (type == Party.PartyType.Player)
         {
             Debug.Log("Ya lost.");
+
+
             SceneManager.LoadScene("FailedScreen");
         }
         else
         {
             Debug.Log("Ya won.");
+
+            ItemBase m6 = new ItemBase("Item 6"); // We need this item later
+            t.AddEntry(m6, 10);
+            
+            // Tell the table we want to have 2 out of 6
+            t.rdsCount = 2;
+            
+            // First demo: Simply loot 2 out of the 6
+            Debug.Log("Step 1: Just loot 2 out 6 - 3 runs");
+            for (int i = 0; i < 3; i++)
+            {
+                Debug.Log("Run " + (i + 1));
+                foreach (ItemBase m in t.rdsResult)
+                    Debug.Log( m._itemName);
+            }
+
+            // Now set Item 6 to drop always
+            m6.rdsAlways = true;
+            Debug.Log("Step 2: Item 6 is now set to Always=true - 3 runs");
+            for (int i = 0; i < 3; i++)
+            {
+                Debug.Log("Run " +  (i + 1));
+                foreach (ItemBase m in t.rdsResult)
+                    Debug.Log(m._itemName);
+            }
+
             SceneManager.LoadScene("LootScreen");
         }
     }

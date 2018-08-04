@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace rds
 {
@@ -12,8 +13,8 @@ namespace rds
 	/// do not implement IRDSObject for yourself, instead derive your base classes that shall interact
 	/// in *any* thinkable way as a result source with any RDSTable from this class.
 	/// </summary>
-	public class RDSObject : IRDSObject
-	{
+	public class RDSObject : MonoBehaviour, IRDSObject
+    {
 		#region CONSTRUCTORS
 		/// <summary>
 		/// Initializes a new instance of the <see cref="RDSObject"/> class.

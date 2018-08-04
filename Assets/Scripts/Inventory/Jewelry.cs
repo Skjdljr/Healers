@@ -2,7 +2,7 @@ public class Jewelry : ItemBase
 {
     int _specialEffect;
 
-    public Jewelry(ITEM_RARITY rarity, int id, int itemSlot, string itemName, int specialEffect) : base( rarity,  id,  itemSlot,  itemName)
+    public Jewelry(string itemName, ITEM_RARITY rarity, int id, int itemSlot, int specialEffect) : base(itemName, rarity,  id,  itemSlot)
     {
         this.SpecialEffect = specialEffect;
     }

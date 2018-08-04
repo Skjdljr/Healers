@@ -6,7 +6,7 @@ public class Weapon : ItemBase
     float _maxDmgHigh { get; set; }
     float _weaponSpeed { get; set; }
 
-    public Weapon(ITEM_RARITY rarity, int id, int itemSlot, string itemName, float minDmgLow, float maxDmgLow, float minDmgHigh, float maxDmgHigh, float weaponSpeed) : base(rarity, id, itemSlot, itemName)
+    public Weapon(string itemName, ITEM_RARITY rarity, int id, int itemSlot, float minDmgLow, float maxDmgLow, float minDmgHigh, float maxDmgHigh, float weaponSpeed) : base(itemName, rarity, id, itemSlot)
     {
         _minDmgLow = minDmgLow;
         _maxDmgLow = maxDmgLow;

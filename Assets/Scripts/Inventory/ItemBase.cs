@@ -1,6 +1,7 @@
 using UnityEngine;
+using rds;
 
-public class ItemBase : MonoBehaviour
+public class ItemBase : RDSObject
 {
     //Each item type will have its own classifications
     //for weapons  enum ITEM_CLASS 1 | 2 handed
@@ -20,7 +21,7 @@ public class ItemBase : MonoBehaviour
         return dmg;
     }
 
-    public ItemBase(ITEM_RARITY rarity, int id, int itemSlot, string itemName)
+    public ItemBase(string itemName, ITEM_RARITY rarity = ITEM_RARITY.NORMAL, int id = -1, int itemSlot = -1)
     {
         this._rarity = rarity;
         this._id = id;
