@@ -60,19 +60,25 @@ public class PartyManager : MonoBehaviour
             switch (rand)
             {
                 case 0:
-                    charData = new Warrior();
-                    charData.displayName = "Warrior" + i;
-                    charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
+                    charData = new Warrior()
+                    {
+                        displayName = "Warrior" + i,
+                        classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR
+                    };
                     break;
                 case 1:
-                    charData = new Mage();
-                    charData.displayName = "Mage" + i;
-                    charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.MAGE;
+                    charData = new Mage()
+                    {
+                        displayName = "Mage" + i,
+                        classType = HM_Utils.CLASS_SPECIFIC_TYPE.MAGE
+                    };
                     break;
                 case 2:
-                    charData = new Rogue();
-                    charData.displayName = "Rogue" + i;
-                    charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE;
+                    charData = new Rogue()
+                    {
+                        displayName = "Rogue" + i,
+                        classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE
+                    };
                     break;
             }
 

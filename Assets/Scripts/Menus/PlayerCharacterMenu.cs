@@ -25,10 +25,10 @@ public class PlayerCharacterMenu : MonoBehaviour
 
     private void AddPlayerClasses()
     {
-        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.DRUID, 100, CreateDruidSpells()));
-        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.PALADIN, 100, CreatePaladinSpells()));
-        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.PRIEST, 110, CreatePriestSpells()));
-        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.SHAMAN, 80, CreateShamanSpells()));
+        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.DRUID, 100, 100, CreateDruidSpells()));
+        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.PALADIN, 100, 100, CreatePaladinSpells()));
+        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.PRIEST, 100, 110, CreatePriestSpells()));
+        playerClasses.Add(CreatePlayerClass(PLAYER_CLASS.SHAMAN, 100, 100, CreateShamanSpells()));
     }
 
     private List<SpellBase> CreateDruidSpells()
@@ -91,11 +91,11 @@ public class PlayerCharacterMenu : MonoBehaviour
         return _spells;
     }
 
-    private Player CreatePlayerClass(PLAYER_CLASS _class, float _maxMana, List<SpellBase> _spells)
+    private Player CreatePlayerClass(PLAYER_CLASS _class, int _maxHealth, float _maxMana, List<SpellBase> _spells)
     {
         Player pc = new Player();
 
-        pc.InitClass(_maxMana, _class, _spells);
+        pc.InitClass(_maxHealth, _maxMana, _class, _spells);
 
         return pc;
     }

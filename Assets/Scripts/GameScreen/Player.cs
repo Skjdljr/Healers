@@ -1,28 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using HM_Utils;
+using UnityEngine.Experimental.UIElements;
 
 public class Player : MonoBehaviour
-{
+{ 
+    public static Player instance;
+
     SpellSlotLogic curSelectedSpell = null;
     SpellSlotLogic nextSpell = null;
     BaseCharacter selectedCharacter = null;
     List<SpellBase> spells = null;
 
+    public Slider manaSlider;
+    //todo: healthslider
+    public Slider healthSlider;
+
     public PLAYER_CLASS playerClass;
     public Castbar castbar;
-                                          
-    public float mana { get; set; }
-    public float maxMana { get; set; }
+
+    public float _health { get; set; }
+    public float _maxHealth { get; set; }
+    public float _mana { get; set; }
+    public float _maxMana { get; set; }
 
     public PLAYER_STATE currentPlayerState { get; set; }
 
-    private void setTestSpells()
+    private void SetTestSpells()
     {
         spells = new List<SpellBase>();
 
         SpellBase sb = new SpellBase();
-        sb.SetSpell("Restoration", 15, 3, 1.50f, 6, 30, 2,false, "Druid.aoe", SPELL_SCHOOL.BASE, SPELL_TYPE.HEALOVERTIME, CLASS_SPECIFIC_TYPE.ALL);
+        sb.SetSpell("Restoration", 15, 3, 1.50f, 6, 30, 2, false, "Druid.aoe", SPELL_SCHOOL.BASE, SPELL_TYPE.HEALOVERTIME, CLASS_SPECIFIC_TYPE.ALL);
         spells.Add(sb);
 
         sb = new SpellBase();
@@ -34,15 +43,20 @@ public class Player : MonoBehaviour
         spells.Add(sb);
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Use this for initialization
     void Start()
     {
         var parties = FindObjectsOfType<Party>();
         foreach (var p in parties)
         {
-            if (p.Type == Party.PartyType.Player)
+            if (p._partyType == Party.PartyType.Player)
             {
-                foreach (var character in p.partyMembers)
+                foreach (var character in p._partyMembers)
                 {
                     character.OnCharacterSelected += PartyMemberSelected;
                     //character.OnButtonClicked += PartyMemberSelected;
@@ -53,8 +67,8 @@ public class Player : MonoBehaviour
         var spellSlots = FindObjectsOfType<SpellSlotLogic>();
 
         //TODO: Get this from the player that is set in the character select
-        setTestSpells();
-        InitClass(500, PLAYER_CLASS.PRIEST, spells);
+        SetTestSpells();
+        InitClass(100, 110, PLAYER_CLASS.PRIEST, spells);
 
         var index = 0;
         foreach (var s in spellSlots)
@@ -91,7 +105,7 @@ public class Player : MonoBehaviour
 
     private void TryCast()
     {
-        if(currentPlayerState != PLAYER_STATE.CASTING && selectedCharacter.characterState != BaseCharacter.CHARACTER_STATE.Fainted) /*!castbar.isCasting*/ 
+        if (currentPlayerState != PLAYER_STATE.CASTING && selectedCharacter.characterState != BaseCharacter.CHARACTER_STATE.Fainted) /*!castbar.isCasting*/
         {
             var spell = curSelectedSpell.GetSpellData();
 
@@ -101,8 +115,25 @@ public class Player : MonoBehaviour
                 if (selectedCharacter.partyType == Party.PartyType.Player)
                 {
                     currentPlayerState = PLAYER_STATE.CASTING;
+
                     //TODO: Move this to an event?
                     castbar.Cast(spell.castTime);
+
+                    //store a copy for lerp
+                    var currentMana = _mana;
+
+                    //use the mana
+                    _mana -= spell.resourceCost;
+
+                    if (_mana <= 0)
+                    {
+                        _mana = 0;
+                        manaSlider.value = _mana;
+                    }
+                    else
+                    {
+                        manaSlider.value = Mathf.Lerp(currentMana, _mana, _mana / _maxMana);
+                    }
                 }
                 else
                 {
@@ -117,14 +148,14 @@ public class Player : MonoBehaviour
     private bool CheckMana(float manaCost)
     {
         bool good = false;
-        if (mana >= manaCost)
+        if (_mana >= manaCost)
         {
             good = true;
         }
         else
         {
             //TODO: play sound or something
-            print("Player: Does not have enough mana... Needed: " + manaCost + " available " + this.mana);
+            print("Player: Does not have enough mana... Needed: " + manaCost + " available " + this._mana);
         }
 
         return good;
@@ -165,10 +196,11 @@ public class Player : MonoBehaviour
         ClearCasting();
     }
 
-    public void InitClass(float _maxMana, PLAYER_CLASS _class, List<SpellBase> _spells)
+    public void InitClass(float _maxHealth, float _maxMana, PLAYER_CLASS _class, List<SpellBase> _spells)
     {
-        mana = _maxMana;
-        maxMana = _maxMana;
+        _health = _maxHealth;
+        _mana = _maxMana;
+        this._maxMana = _maxMana;
         spells = _spells;
         playerClass = _class;
         currentPlayerState = PLAYER_STATE.IDLE;

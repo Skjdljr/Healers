@@ -83,9 +83,9 @@ public class BattleController : MonoBehaviour
         BaseCharacter enemy = null;
 
         // Get any party members who aren't fainted also only attack if we are not dead
-        if (victims != null && victims.partyMembers != null && aggresors != null)
+        if (victims != null && victims._partyMembers != null && aggresors != null)
         {
-            var members = victims.partyMembers.Where(pm => pm.characterState != BaseCharacter.CHARACTER_STATE.Fainted).ToList();
+            var members = victims._partyMembers.Where(pm => pm.characterState != BaseCharacter.CHARACTER_STATE.Fainted).ToList();
 
             if (members.Count > 0 )
                 enemy = members[Random.Range(0, members.Count)];

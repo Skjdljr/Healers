@@ -15,14 +15,14 @@ public class Party : MonoBehaviour
 
     #region Public Variables
     public int MAX_PARTY_SIZE = 5;
-    public List<BaseCharacter> partyMembers = new List<BaseCharacter>();
-    public PartyType Type;
+    public List<BaseCharacter> _partyMembers = new List<BaseCharacter>();
+    public PartyType _partyType;
     #endregion
 
     // Use this for initialization
     private void Start()
     {
-        if (Type == PartyType.Player)
+        if (_partyType == PartyType.Player)
         {
             FillParty();
         }
@@ -34,20 +34,21 @@ public class Party : MonoBehaviour
 
     private void FillEnemies()
     {
-        for(int i = 0; i < partyMembers.Count; ++i)
+        for(int i = 0; i < _partyMembers.Count; ++i)
         {
             //TODO: have enmey types and a set ammount
             CharacterData charData = new Warrior();
             charData.displayName = "Enemy Warrior" + i;
             charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
 
-            charData.health = 25;
-            partyMembers[i].Init(charData, Type);
+            charData.health = 1;
+            _partyMembers[i].Init(charData, _partyType);
         }
     }
 
     private void FillParty()
     {
+        //Max party size -1 because you have to be in the group
         for (int i = 0; i < MAX_PARTY_SIZE; i++)
         {
             var rand = Random.Range(0, 3);
@@ -57,30 +58,45 @@ public class Party : MonoBehaviour
             //populate partymem with data
 
             CharacterData charData = null;
-            
-            switch (rand)
+
+            if (i == MAX_PARTY_SIZE)
             {
-                case 0:
-                    charData = new Warrior();
-                    charData.displayName = "Warrior" + i;
-                    charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
-                    break;
-                case 1:
-                    charData = new Mage();
-                    charData.displayName = "Mage" + i;
-                    charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.MAGE;
-                    break;
-                case 2:
-                    charData = new Rogue();
-                    charData.displayName = "Rogue" + i;
-                    charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE;
-                    break;
+                //create the player character!!!!!
+
+                charData = new CharacterData();
+                
+                //todo: base stats different per class
+                charData.SetBaseStats("Healer", 100, 100, 100, 1, 1, HM_Utils.CLASS_SPECIFIC_TYPE.ALL);
+
+                //todo: resistances different per class
+                charData.SetResistances();
+            }
+            else
+            {
+                switch (rand)
+                {
+                    case 0:
+                        charData = new Warrior();
+                        charData.displayName = "Warrior" + i;
+                        charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
+                        break;
+                    case 1:
+                        charData = new Mage();
+                        charData.displayName = "Mage" + i;
+                        charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.MAGE;
+                        break;
+                    case 2:
+                        charData = new Rogue();
+                        charData.displayName = "Rogue" + i;
+                        charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE;
+                        break;
+                }
+
+                //override their health
+                charData.health = Random.Range(20, 45);
             }
 
-            //TODO: this is to set there health with out taking dmg
-            charData.health = Random.Range(20, 45);
-
-            partyMembers[i].Init(charData, Type);
+            _partyMembers[i].Init(charData, _partyType);
         }
     }
 
@@ -91,7 +107,7 @@ public class Party : MonoBehaviour
 
     public void Activate()
     {
-        foreach(var member in partyMembers)
+        foreach(var member in _partyMembers)
         {
             member.Activate();
         }
@@ -99,10 +115,10 @@ public class Party : MonoBehaviour
 
     private void Update()
     {
-        var result = partyMembers.Count(p => p.characterState == BaseCharacter.CHARACTER_STATE.Fainted);
-        if(result == partyMembers.Count && OnDefeated != null)
+        var result = _partyMembers.Count(p => p.characterState == BaseCharacter.CHARACTER_STATE.Fainted);
+        if(result == _partyMembers.Count && OnDefeated != null)
         {
-            OnDefeated(Type);
+            OnDefeated(_partyType);
             enabled = false;
         }
     }

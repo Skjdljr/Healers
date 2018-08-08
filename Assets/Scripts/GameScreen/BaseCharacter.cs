@@ -17,6 +17,7 @@ public class BaseCharacter : MonoBehaviour
     public Image classDisplayImage = null;
     public Party.PartyType partyType;
     public float OverHealAmnt = 0;
+    public bool isPlayer = false;
     Coroutine routine = null;
 
     public Animator animator;
@@ -81,9 +82,9 @@ public class BaseCharacter : MonoBehaviour
         partyType = type;
         data = _char;
 
-        HealthBar.onValueChanged.AddListener(OnHealthChanged);
-        ArmorBar.onValueChanged.AddListener(OnArmorChanged);
-        ResourceBar.onValueChanged.AddListener(OnResourceChanged);
+        //HealthBar.onValueChanged.AddListener(OnHealthChanged);
+        //ArmorBar.onValueChanged.AddListener(OnArmorChanged);
+        //ResourceBar.onValueChanged.AddListener(OnResourceChanged);
 
         if (data != null)
         {
@@ -111,10 +112,18 @@ public class BaseCharacter : MonoBehaviour
         if (data != null)
         {
             //possibly value / maxHealth ie. HealthBar.value = (value / data.maxHealth);
-            HealthBar.value = (data.health / data.maxHealth);
+            HealthBar.value = value;
 
             //change color
             healthBarFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)value / data.maxHealth);
+        }
+
+        if(isPlayer)
+        {
+            //TODO: joel come back to this. the character - Does the player need health or mana?
+            //or can we get away with the data in the base character. set the ui off of those values?
+            Player.instance.healthSlider.value = data.health;
+
         }
     }
 
@@ -195,6 +204,8 @@ public class BaseCharacter : MonoBehaviour
                 //TODO: maybe grey out the background as well
                 SetFainted();
             }
+
+            OnHealthChanged(data.health);
         }
     }
 
@@ -207,6 +218,8 @@ public class BaseCharacter : MonoBehaviour
             OverHealAmnt += (data.health - data.maxHealth);
             data.health = data.maxHealth;
         }
+
+        OnHealthChanged(data.health);
     }
 
     public virtual void Heal(float amount)
