@@ -1,17 +1,19 @@
-public class Weapon : ItemBase
+namespace Assets.Inventory
 {
-    float _minDmgLow { get; set; }
-    float _maxDmgLow { get; set; }
-    float _minDmgHigh { get; set; }
-    float _maxDmgHigh { get; set; }
-    float _weaponSpeed { get; set; }
+    public enum WEAPON_CLASS { ONE_HANDED, TWO_HANDED }
+    public enum WEAPON_TYPE { MACE, STAFF }
 
-    public Weapon(string itemName, ITEM_RARITY rarity, int id, int itemSlot, float minDmgLow, float maxDmgLow, float minDmgHigh, float maxDmgHigh, float weaponSpeed) : base(itemName, rarity, id, itemSlot)
+    public class Weapon : ItemBase
     {
-        _minDmgLow = minDmgLow;
-        _maxDmgLow = maxDmgLow;
-        _minDmgHigh = minDmgHigh;
-        _maxDmgHigh = maxDmgHigh;
-        _weaponSpeed = weaponSpeed;
+        //possible buffs, casting speed, +healing, +regen, +maxMana
+
+        public WEAPON_TYPE weaponType;
+        public WEAPON_CLASS weaponClass;
+
+        public Weapon(string itemName, WEAPON_CLASS wClass, WEAPON_TYPE wType, ITEM_RARITY rarity = ITEM_RARITY.NORMAL, int id = -1, ITEM_SLOT itemSlot = ITEM_SLOT.WEAPON) : base(itemName, rarity, id, itemSlot)
+        {
+            weaponClass = wClass;
+            weaponType = wType;
+        }
     }
 }

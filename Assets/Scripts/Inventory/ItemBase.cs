@@ -1,33 +1,34 @@
 using UnityEngine;
 using rds;
 
-public class ItemBase : RDSObject
+namespace Assets.Inventory
 {
-    //Each item type will have its own classifications
-    //for weapons  enum ITEM_CLASS 1 | 2 handed
-    //for armor... Cloth,Leather,Plate
-    //for jewel... Necklace, earing, ring
-
-    //enum ITEM_TYPE { BASE, ARMOR, WEAPON, JEWELRY, MISC }
+    public enum ITEM_SLOT { CHEST_ARMOR, HELMET, SHIELD, WEAPON, JEWELERY, MISC, INVENTORY }
     public enum ITEM_RARITY { NORMAL, MAGIC, UNIQUE, SET, QUEST }
 
-    public ITEM_RARITY _rarity { get; set; }
-    public int _id { get; set; }
-    public int _itemSlot { get; set; }
-    public string _itemName { get; set; }
+    //Should prob be added to base item constructor
+    public enum SPECIAL_EFFECT { NONE, MANA, REGEN, STAT_BONUS } //?
 
-    public float TakeDamage(float dmg)
+    public class ItemBase : RDSObject
     {
-        return dmg;
-    }
+        public int _id { get; set; }
+        public string _itemName { get; set; }
+        public ITEM_RARITY _rarity { get; set; }
+        public ITEM_SLOT _itemSlot { get; set; }
 
-    public ItemBase(string itemName, ITEM_RARITY rarity = ITEM_RARITY.NORMAL, int id = -1, int itemSlot = -1)
-    {
-        this._rarity = rarity;
-        this._id = id;
-        this._itemSlot = itemSlot;
-        this._itemName = itemName;
-    }
+        public float TakeDamage(float dmg)
+        {
+            return dmg;
+        }
 
-    public bool IsEquiped() { return this._itemSlot >= 0; }
+        public ItemBase(string itemName, ITEM_RARITY rarity = ITEM_RARITY.NORMAL, int id = -1, ITEM_SLOT itemSlot = ITEM_SLOT.INVENTORY)
+        {
+            this._rarity = rarity;
+            this._id = id;
+            this._itemSlot = itemSlot;
+            this._itemName = itemName;
+        }
+
+        public bool IsEquiped() { return this._itemSlot >= 0; }
+    }
 }

@@ -1,22 +1,25 @@
-public class Misc : ItemBase
+namespace Assets.Inventory
 {
-    private string _displayText;
-
-    public Misc(string itemName, ITEM_RARITY rarity, int id, int itemSlot, string displayText) : base(itemName, rarity, id, itemSlot)
+    public class Misc : ItemBase
     {
-        DisplayText = displayText;
-    }
+        private string _displayText;
 
-    public string DisplayText
-    {
-        get
+        public Misc(string itemName, string displayText, ITEM_RARITY rarity = ITEM_RARITY.NORMAL, ITEM_SLOT itemSlot = ITEM_SLOT.MISC, int id = -1) : base(itemName, rarity, id, itemSlot)
         {
-            return _displayText;
+            DisplayText = displayText;
         }
 
-        set
+        public string DisplayText
         {
-            _displayText = value;
+            get
+            {
+                return _displayText;
+            }
+
+            set
+            {
+                _displayText = value;
+            }
         }
     }
 }
