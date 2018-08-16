@@ -96,14 +96,16 @@ public class BaseCharacter : MonoBehaviour
             SetDisplayImage();
 
 
-            //Get the image of the bar
+            //Get the image of the bar... figure out what component to grab
             healthBarFill = HealthBar.GetComponent<Image>();
+
         }
     }
 
-    const float LOW_PERCENT = 0.25f;
-    const float MED_PERCENT = 0.70f;
+    [SerializeField]
     Color MaxHealthColor = Color.green;
+
+    [SerializeField]
     Color MinHealthColor = Color.red;
 
     // public Image Fill
@@ -111,11 +113,11 @@ public class BaseCharacter : MonoBehaviour
     {
         if (data != null)
         {
-            //possibly value / maxHealth ie. HealthBar.value = (value / data.maxHealth);
-            HealthBar.value = value;
+            //healthbar is the current value. value is new value we want.
+            HealthBar.value = Mathf.Lerp(HealthBar.value, value, Time.deltaTime * 2);
 
-            //change color
-            healthBarFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, (float)value / data.maxHealth);
+            //change color between green/red and set to the % of 0-1
+            healthBarFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, value);
         }
 
         if(isPlayer)
@@ -205,7 +207,10 @@ public class BaseCharacter : MonoBehaviour
                 SetFainted();
             }
 
-            OnHealthChanged(data.health);
+            //needs to be percentage to fill
+            var value = damage / data.maxHealth;
+
+            OnHealthChanged(value);
         }
     }
 
