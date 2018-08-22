@@ -23,8 +23,8 @@ public class BattleController : MonoBehaviour
     //RDS Tables
     RDSTable masterTable = new RDSTable();
     RDSTable commonTable = new RDSTable();
-    RDSTable setTable = new RDSTable();
-    RDSTable uniqueTable = new RDSTable();
+    //RDSTable setTable = new RDSTable();
+    //RDSTable uniqueTable = new RDSTable();
 
     private void Start()
     {

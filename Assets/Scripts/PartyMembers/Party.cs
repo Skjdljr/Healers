@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.PartyMembers.Classes.Playable;
 
 public class Party : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class Party : MonoBehaviour
             charData.displayName = "Enemy Warrior" + i;
             charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
 
-            charData.health = 1;
+            charData.health = 99;
             _partyMembers[i].Init(charData, _partyType);
         }
     }
@@ -51,7 +52,7 @@ public class Party : MonoBehaviour
         //Max party size -1 because you have to be in the group
         for (int i = 0; i < MAX_PARTY_SIZE; i++)
         {
-            var rand = Random.Range(0, 3);
+            var range = Random.Range(0, 3);
 
             //Get data from the global class 
             //add component of type (war/rogue/mage) to partymember
@@ -59,21 +60,16 @@ public class Party : MonoBehaviour
 
             CharacterData charData = null;
 
-            if (i == MAX_PARTY_SIZE)
+            if (i == MAX_PARTY_SIZE - 1)
             {
+                //todo: add the player here
+
                 //create the player character!!!!!
-
-                charData = new CharacterData();
-                
-                //todo: base stats different per class
-                charData.SetBaseStats("Healer", 100, 100, 100, 1, 1, HM_Utils.CLASS_SPECIFIC_TYPE.ALL);
-
-                //todo: resistances different per class
-                charData.SetResistances();
+                charData = new Druid();
             }
             else
             {
-                switch (rand)
+                switch (range)
                 {
                     case 0:
                         charData = new Warrior();
@@ -91,10 +87,10 @@ public class Party : MonoBehaviour
                         charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE;
                         break;
                 }
-
-                //override their health
-                charData.health = Random.Range(20, 45);
             }
+
+            //override their health
+            charData.health = Random.Range(20, 45);
 
             _partyMembers[i].Init(charData, _partyType);
         }

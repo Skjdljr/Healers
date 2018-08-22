@@ -28,7 +28,14 @@ public class BaseCharacter : MonoBehaviour
     public delegate void CharacterSlected(BaseCharacter character);
     public CharacterSlected OnCharacterSelected;
 
-    private Image healthBarFill;
+    [SerializeField]
+    Image healthBarFill;
+
+    [SerializeField]
+    Color MaxHealthColor = Color.green;
+
+    [SerializeField]
+    Color MinHealthColor = Color.red;
 
     void Start()
     {
@@ -94,19 +101,8 @@ public class BaseCharacter : MonoBehaviour
             ArmorBar.value = (data.armor / data.maxArmor);
             ResourceBar.value = (data.resource / data.maxResource);
             SetDisplayImage();
-
-
-            //Get the image of the bar... figure out what component to grab
-            healthBarFill = HealthBar.GetComponent<Image>();
-
         }
     }
-
-    [SerializeField]
-    Color MaxHealthColor = Color.green;
-
-    [SerializeField]
-    Color MinHealthColor = Color.red;
 
     // public Image Fill
     public void OnHealthChanged(float value)
@@ -117,7 +113,8 @@ public class BaseCharacter : MonoBehaviour
             HealthBar.value = Mathf.Lerp(HealthBar.value, value, Time.deltaTime * 2);
 
             //change color between green/red and set to the % of 0-1
-            healthBarFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, value);
+            if(healthBarFill != null)
+                healthBarFill.color = Color.Lerp(MinHealthColor, MaxHealthColor, value);
         }
 
         if(isPlayer)
@@ -198,17 +195,19 @@ public class BaseCharacter : MonoBehaviour
             //TODO: hit reaction
             data.health -= damage;
 
+            //needs to be percentage to fill
+            var value = data.health / data.maxHealth;
+
             if (data.health <= 0)
             {
                 //TODO: death anim
                 data.health = 0;
 
+                value = 0;
+
                 //TODO: maybe grey out the background as well
                 SetFainted();
             }
-
-            //needs to be percentage to fill
-            var value = damage / data.maxHealth;
 
             OnHealthChanged(value);
         }
@@ -224,7 +223,10 @@ public class BaseCharacter : MonoBehaviour
             data.health = data.maxHealth;
         }
 
-        OnHealthChanged(data.health);
+        //needs to be percentage to fill
+        var value = data.health / data.maxHealth;
+
+        OnHealthChanged(value);
     }
 
     public virtual void Heal(float amount)
@@ -271,6 +273,14 @@ public class BaseCharacter : MonoBehaviour
                 break;
             case CLASS_SPECIFIC_TYPE.ROGUE:
                 s = Utils.LoadSprite("stiletto", SPITE_LOCATIONS.PARTY_MEMBERS);
+                classDisplayImage.sprite = s;
+                break;
+            case CLASS_SPECIFIC_TYPE.DRUID:
+                s = Utils.LoadSprite("clockwork", SPITE_LOCATIONS.PARTY_MEMBERS);
+                classDisplayImage.sprite = s;
+                break;
+            case CLASS_SPECIFIC_TYPE.HOLY_AVENGER:
+                s = Utils.LoadSprite("mailed-fist", SPITE_LOCATIONS.PARTY_MEMBERS);
                 classDisplayImage.sprite = s;
                 break;
         }

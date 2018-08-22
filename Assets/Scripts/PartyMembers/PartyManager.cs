@@ -6,7 +6,7 @@ public class PartyManager : MonoBehaviour
     #region Events
     public delegate void Defeated(PartyType t);
     //TODO? maybe something with this
-    //public event Defeated OnDefeated;
+    public event Defeated OnDefeated;
     #endregion
 
     #region Enums

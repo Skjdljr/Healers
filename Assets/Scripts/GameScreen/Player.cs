@@ -5,7 +5,6 @@ using UnityEngine.Experimental.UIElements;
 
 public class Player : MonoBehaviour
 { 
-    //GLOBAl instance!!!!
     public static Player instance;
 
     SpellSlotLogic curSelectedSpell = null;

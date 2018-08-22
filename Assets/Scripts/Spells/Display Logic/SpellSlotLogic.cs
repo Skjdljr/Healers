@@ -95,8 +95,6 @@ public class SpellSlotLogic : MonoBehaviour
                 
                 target.AddSpellEffect(spellData);
 
-
-
                 coolDownTimer.Start();
                 onCooldown = true;
                 fillCanvas.enabled = true;
