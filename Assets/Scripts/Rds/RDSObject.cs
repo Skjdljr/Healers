@@ -13,7 +13,7 @@ namespace rds
 	/// do not implement IRDSObject for yourself, instead derive your base classes that shall interact
 	/// in *any* thinkable way as a result source with any RDSTable from this class.
 	/// </summary>
-	public class RDSObject : MonoBehaviour, IRDSObject
+	public class RDSObject : IRDSObject
     {
 		#region CONSTRUCTORS
 		/// <summary>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using rds;
 using Assets.Inventory;
+using UnityEngine.UI;
 
 public class BattleController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class BattleController : MonoBehaviour
     public bool enemyCanAttack;
     public Party playerParty;
     public Party enemyParty;
+    public Text DebugText;
 
     //Intro length
     public float introLength;
@@ -61,7 +63,7 @@ public class BattleController : MonoBehaviour
         commonTable.AddEntry(new Jewelry("Copper Band"));
         commonTable.AddEntry(new Misc("Note", "A torn message"));
 
-        masterTable.AddEntry(commonTable, 10);
+        //masterTable.AddEntry(commonTable, 10);
         //masterTable.AddEntry(setTable, 10);
         //masterTable.AddEntry(uniqueTable, 10);
 
@@ -119,16 +121,25 @@ public class BattleController : MonoBehaviour
         {
             Debug.Log("Ya won.");
 
+
+            DebugText.enabled = true;
+            var loot = masterTable.rdsContents.FirstOrDefault();
+            //DebugText.text += "Ya won:" + loot.ToString();
+
             // Tell the table we want to have 2 out of amount
             masterTable.rdsCount = 2;
-            
+            commonTable.rdsCount = 3;
+
             // First demo: Simply loot 2 out of the 6
             Debug.Log("Step 1: Just loot 2 out TOTAL table - 3 runs");
             for (int i = 0; i < 3; i++)
             {
                 Debug.Log("Run " + (i + 1));
-                foreach (ItemBase m in masterTable.rdsResult)
-                    Debug.Log( m._itemName);
+                foreach (ItemBase m in commonTable.rdsResult)
+                {
+                    Debug.Log(m._itemName);
+                    DebugText.text += m._itemName;
+                }
             }
 
             // Now set Item 6 to drop always

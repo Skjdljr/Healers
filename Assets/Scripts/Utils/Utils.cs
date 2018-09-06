@@ -30,7 +30,7 @@ namespace HM_Utils
         public static Sprite LoadSprite(string SpriteTextureName, SPITE_LOCATIONS assetLocation)
         {
             string path = CreateSpritePath(SpriteTextureName, assetLocation);
-            Debug.unityLogger.Log("path of sprite to load " + path);
+            //Debug.unityLogger.Log("path of sprite to load " + path);
             
             return (Sprite)AssetDatabase.LoadAssetAtPath(path, typeof(Sprite));
         }

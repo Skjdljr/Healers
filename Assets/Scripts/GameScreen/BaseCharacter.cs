@@ -19,6 +19,7 @@ public class BaseCharacter : MonoBehaviour
     public float OverHealAmnt = 0;
     public bool isPlayer = false;
     Coroutine routine = null;
+    bool log = false;
 
     public Animator animator;
 
@@ -166,7 +167,8 @@ public class BaseCharacter : MonoBehaviour
             enemy.TakeDamage(dmg);
 
             //log the dmg
-            Debug.Log(data.displayName + " attacks " + enemy.data.displayName + " for " + dmg + " damage.");
+            if(log)
+                Debug.Log(data.displayName + " attacks " + enemy.data.displayName + " for " + dmg + " damage.");
         }
     }
 
@@ -192,7 +194,8 @@ public class BaseCharacter : MonoBehaviour
         //check the battle controller for the type and if it is allowed to attack
         var canAttack = partyType == Party.PartyType.Enemy ? bc.enemyCanAttack : bc.partyCanAttack;
 
-        Debug.Log(data.displayName + " canAttack " + canAttack);
+        if(log)
+            Debug.Log(data.displayName + " canAttack " + canAttack);
 
         //TODO: may have to revist this. 
         return characterState == CHARACTER_STATE.Idle && canAttack;

@@ -37,62 +37,66 @@ public class Party : MonoBehaviour
     {
         for(int i = 0; i < _partyMembers.Count; ++i)
         {
-            //TODO: have enmey types and a set ammount
-            CharacterData charData = new Warrior();
-            charData.displayName = "Enemy Warrior" + i;
-            charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
-
-            charData.health = 99;
-            _partyMembers[i].Init(charData, _partyType);
+            //todo: joel fix enemy health before exe
+            SpawnRandomClass(i, 5, 15);
         }
     }
+
+    private void SpawnRandomClass(int index, float minHealth = 20, float maxHealth = 100, string name = "")
+    {
+        CharacterData charData = null;
+
+        var range = Random.Range(0, 3);
+
+        string defaultName = "";
+
+        defaultName = !string.IsNullOrEmpty(name) ? name : _partyType.ToString();
+
+        switch (range)
+        {
+            case 0:
+                charData = new Warrior();
+                charData.displayName = defaultName + " Warrior " + index;
+                charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
+                break;
+            case 1:
+                charData = new Mage();
+                charData.displayName = defaultName + " Mage " + index;
+                charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.MAGE;
+                break;
+            case 2:
+                charData = new Rogue();
+                charData.displayName = defaultName + " Rogue " + index;
+                charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE;
+                break;
+        }
+
+        //override their health
+        charData.health = Random.Range(minHealth, maxHealth);
+
+        _partyMembers[index].Init(charData, _partyType);
+    }
+
 
     private void FillParty()
     {
         //Max party size -1 because you have to be in the group
         for (int i = 0; i < MAX_PARTY_SIZE; i++)
         {
-            var range = Random.Range(0, 3);
-
-            //Get data from the global class 
-            //add component of type (war/rogue/mage) to partymember
-            //populate partymem with data
-
             CharacterData charData = null;
 
             if (i == MAX_PARTY_SIZE - 1)
             {
-                //todo: add the player here
+                //HAXXXXXX: 
 
-                //create the player character!!!!!
+                //create the player character and add it!!!!!
                 charData = new Druid();
+                _partyMembers[i].Init(charData, _partyType);
             }
             else
             {
-                switch (range)
-                {
-                    case 0:
-                        charData = new Warrior();
-                        charData.displayName = "Warrior" + i;
-                        charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.WARRIOR;
-                        break;
-                    case 1:
-                        charData = new Mage();
-                        charData.displayName = "Mage" + i;
-                        charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.MAGE;
-                        break;
-                    case 2:
-                        charData = new Rogue();
-                        charData.displayName = "Rogue" + i;
-                        charData.classType = HM_Utils.CLASS_SPECIFIC_TYPE.ROGUE;
-                        break;
-                }
+                SpawnRandomClass(i);
             }
-
-            //override their health
-            charData.health = Random.Range(20, 45);
-
-            _partyMembers[i].Init(charData, _partyType);
         }
     }
 
