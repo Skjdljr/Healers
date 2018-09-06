@@ -119,21 +119,22 @@ public class Player : MonoBehaviour
                     //TODO: Move this to an event?
                     castbar.Cast(spell.castTime);
 
+                    //TODO: put in mana bar. commented out now as there is no visual for it
                     //store a copy for lerp
-                    var currentMana = _mana;
+                    //var currentMana = _mana;
 
-                    //use the mana
-                    _mana -= spell.resourceCost;
+                    ////use the mana
+                    //_mana -= spell.resourceCost;
 
-                    if (_mana <= 0)
-                    {
-                        _mana = 0;
-                        manaSlider.value = _mana;
-                    }
-                    else
-                    {
-                        manaSlider.value = Mathf.Lerp(currentMana, _mana, _mana / _maxMana);
-                    }
+                    //if (_mana <= 0)
+                    //{
+                    //    _mana = 0;
+                    //    manaSlider.value = _mana;
+                    //}
+                    //else
+                    //{
+                    //    manaSlider.value = Mathf.Lerp(currentMana, _mana, _mana / _maxMana);
+                    //}
                 }
                 else
                 {

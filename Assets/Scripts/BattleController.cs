@@ -141,7 +141,7 @@ public class BattleController : MonoBehaviour
             //        Debug.Log(m._itemName);
             //}
 
-            SceneManager.LoadScene("LootScreen");
+            //SceneManager.LoadScene("LootScreen");
         }
     }
 }

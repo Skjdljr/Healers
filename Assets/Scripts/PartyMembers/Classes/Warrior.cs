@@ -10,7 +10,7 @@ public class Warrior : CharacterData
     // Use this for initialization
     protected override void Start()
     {
-        SetBaseStats("Warrior", 100, 150, 5, 5.0f, 5.0f, CLASS_SPECIFIC_TYPE.WARRIOR);
+        SetBaseStats("Warrior", 100, 150, 5, 5.0f, 2.0f, CLASS_SPECIFIC_TYPE.WARRIOR);
         SetResistances(.1f, .1f, .1f, .1f, .6f, 0f);
         rage = 0;
         maxRage = 100;

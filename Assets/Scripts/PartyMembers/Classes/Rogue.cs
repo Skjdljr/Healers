@@ -9,7 +9,7 @@ public class Rogue : CharacterData
     // Use this for initialization
     protected override void Start()
     {
-        SetBaseStats("Rogue", 100, 65, 1, 1.0f, 0.5f, CLASS_SPECIFIC_TYPE.ROGUE);
+        SetBaseStats("Rogue", 100, 65, 1, 2.0f, 0.5f, CLASS_SPECIFIC_TYPE.ROGUE);
         SetResistances(.1f, .3f, .1f, .7f, .1f, .3f);
         dodgeChance = .25f;
         energy = 100;

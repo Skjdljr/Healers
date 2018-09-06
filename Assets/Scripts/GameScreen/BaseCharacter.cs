@@ -104,6 +104,17 @@ public class BaseCharacter : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (data != null)
+        {
+            HealthBar.value = (data.health / data.maxHealth);
+            ArmorBar.value = (data.armor / data.maxArmor);
+            ResourceBar.value = (data.resource / data.maxResource);
+        }
+    }
+
     // public Image Fill
     public void OnHealthChanged(float value)
     {
@@ -209,7 +220,7 @@ public class BaseCharacter : MonoBehaviour
                 SetFainted();
             }
 
-            OnHealthChanged(value);
+            //OnHealthChanged(value);
         }
     }
 
@@ -224,9 +235,8 @@ public class BaseCharacter : MonoBehaviour
         }
 
         //needs to be percentage to fill
-        var value = data.health / data.maxHealth;
-
-        OnHealthChanged(value);
+        //var value = data.health / data.maxHealth;
+        //OnHealthChanged(value);
     }
 
     public virtual void Heal(float amount)
@@ -299,19 +309,19 @@ public class BaseCharacter : MonoBehaviour
     //TODO: have attack speed determine how often this happens in the battle controller
     private float CalculateDamage(BaseCharacter target)
     {
-        //TODO: check the type of damage being applied (then check against the correct resistance)
+        //TODO: comment in and figure out damage reduction - check the type of damage being applied (then check against the correct resistance)
         //Damagereduction float value between 0-1
-        var dmg = data.damage * (1 - target.data.physyicalResist);
+        //var dmg = data.damage * (1 - target.data.physyicalResist);
 
-        //have to make sure crit chance is 0-1
-        if (Random.Range(0.0f, 1.0f) >= (1 - data.critChance))
-        {
-            // Critical hit 1.5/3.0% extra dmg
-            //TODO: have adjustable modifiers (per char) 
-            dmg *= GetRandom(1.5f, 3.0f);
-        }
+        ////have to make sure crit chance is 0-1
+        //if (Random.Range(0.0f, 1.0f) >= (1 - data.critChance))
+        //{
+        //    // Critical hit 1.5/3.0% extra dmg
+        //    //TODO: have adjustable modifiers (per char) 
+        //    dmg *= GetRandom(1.5f, 3.0f);
+        //}
 
-        return dmg;
+        return data.damage;
     }
 
     //Could be used to purge spells
