@@ -12,7 +12,6 @@ namespace Assets.Inventory
 
         public Weapon(string itemName, WEAPON_CLASS wClass, WEAPON_TYPE wType, ITEM_RARITY rarity = ITEM_RARITY.NORMAL, int id = -1, ITEM_SLOT itemSlot = ITEM_SLOT.WEAPON) : base(itemName, rarity, id, itemSlot)
         {
-            _itemName = itemName;
             weaponClass = wClass;
             weaponType = wType;
         }

@@ -29,6 +29,11 @@ namespace Assets.Inventory
             this._itemName = itemName;
         }
 
+        public override string ToString()
+        {
+            return _itemName;
+        }
+
         public bool IsEquiped() { return this._itemSlot >= 0; }
     }
 }

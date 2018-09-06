@@ -47,21 +47,21 @@ public class BattleController : MonoBehaviour
     private void CreateTables()
     {
         commonTable = new RDSTable();
-        commonTable.AddEntry(new Armor("Cloth Chest Piece", ARMOR_CLASS.CLOTH, ITEM_SLOT.CHEST_ARMOR));
-        commonTable.AddEntry(new Armor("Cloth Helmet", ARMOR_CLASS.CLOTH, ITEM_SLOT.HELMET));
-        commonTable.AddEntry(new Armor("Padded Chest Piece", ARMOR_CLASS.LEATHER, ITEM_SLOT.CHEST_ARMOR));
-        commonTable.AddEntry(new Armor("Padded Helmet", ARMOR_CLASS.LEATHER, ITEM_SLOT.HELMET));
-        commonTable.AddEntry(new Armor("Plate Chest Piece", ARMOR_CLASS.PLATE, ITEM_SLOT.CHEST_ARMOR));
-        commonTable.AddEntry(new Armor("Plate Helment", ARMOR_CLASS.PLATE, ITEM_SLOT.HELMET));
-        commonTable.AddEntry(new Weapon("Default Stick", WEAPON_CLASS.TWO_HANDED, WEAPON_TYPE.STAFF));
-        commonTable.AddEntry(new Weapon("Blunt Object", WEAPON_CLASS.ONE_HANDED, WEAPON_TYPE.MACE));
-        commonTable.AddEntry(new Shield("Small Shield", SHIELD_TYPE.SMALL));
-        commonTable.AddEntry(new Shield("Medium Shield", SHIELD_TYPE.MEDIUM));
-        commonTable.AddEntry(new Shield("Large Shield", SHIELD_TYPE.LARGE));
-        commonTable.AddEntry(new Jewelry("Plain Amulet"));
-        commonTable.AddEntry(new Jewelry("Silver Ring"));
-        commonTable.AddEntry(new Jewelry("Copper Band"));
-        commonTable.AddEntry(new Misc("Note", "A torn message"));
+        commonTable.AddEntry(new Armor("Cloth Chest Piece", ARMOR_CLASS.CLOTH, ITEM_SLOT.CHEST_ARMOR), 10);
+        commonTable.AddEntry(new Armor("Cloth Helmet", ARMOR_CLASS.CLOTH, ITEM_SLOT.HELMET), 10);
+        commonTable.AddEntry(new Armor("Padded Chest Piece", ARMOR_CLASS.LEATHER, ITEM_SLOT.CHEST_ARMOR), 10);
+        commonTable.AddEntry(new Armor("Padded Helmet", ARMOR_CLASS.LEATHER, ITEM_SLOT.HELMET), 10);
+        commonTable.AddEntry(new Armor("Plate Chest Piece", ARMOR_CLASS.PLATE, ITEM_SLOT.CHEST_ARMOR), 10);
+        commonTable.AddEntry(new Armor("Plate Helment", ARMOR_CLASS.PLATE, ITEM_SLOT.HELMET), 10);
+        commonTable.AddEntry(new Weapon("Default Stick", WEAPON_CLASS.TWO_HANDED, WEAPON_TYPE.STAFF), 10);
+        commonTable.AddEntry(new Weapon("Blunt Object", WEAPON_CLASS.ONE_HANDED, WEAPON_TYPE.MACE), 10);
+        commonTable.AddEntry(new Shield("Small Shield", SHIELD_TYPE.SMALL), 10);
+        commonTable.AddEntry(new Shield("Medium Shield", SHIELD_TYPE.MEDIUM), 10);
+        commonTable.AddEntry(new Shield("Large Shield", SHIELD_TYPE.LARGE), 10);
+        commonTable.AddEntry(new Jewelry("Plain Amulet"), 10);
+        commonTable.AddEntry(new Jewelry("Silver Ring"), 10);
+        commonTable.AddEntry(new Jewelry("Copper Band"), 10);
+        commonTable.AddEntry(new Misc("Note", "A torn message"), 10);
 
         //masterTable.AddEntry(commonTable, 10);
         //masterTable.AddEntry(setTable, 10);
@@ -114,44 +114,31 @@ public class BattleController : MonoBehaviour
         {
             Debug.Log("Ya lost.");
 
+            DebugText.enabled = true;
+            DebugText.text = "Ya Lost";
 
-            SceneManager.LoadScene("FailedScreen");
+            //SceneManager.LoadScene("FailedScreen");
         }
         else
         {
-            Debug.Log("Ya won.");
-
-
             DebugText.enabled = true;
-            var loot = masterTable.rdsContents.FirstOrDefault();
-            //DebugText.text += "Ya won:" + loot.ToString();
-
+            
             // Tell the table we want to have 2 out of amount
-            masterTable.rdsCount = 2;
-            commonTable.rdsCount = 3;
-
-            // First demo: Simply loot 2 out of the 6
-            Debug.Log("Step 1: Just loot 2 out TOTAL table - 3 runs");
-            for (int i = 0; i < 3; i++)
+            //masterTable.rdsCount = 2;
+            commonTable.rdsCount = 2;
+            
+            Debug.Log("Step 1: Just loot 2 out TOTAL table");
+            for (int i = 0; i < 1; i++)
             {
                 Debug.Log("Run " + (i + 1));
                 foreach (ItemBase m in commonTable.rdsResult)
                 {
-                    Debug.Log(m._itemName);
-                    DebugText.text += m._itemName;
+                    Debug.Log(m);
+                    DebugText.text += "\n"+ m;
                 }
             }
 
-            // Now set Item 6 to drop always
-            //m6.rdsAlways = true;
-            //Debug.Log("Step 2: Item 6 is now set to Always=true - 3 runs");
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    Debug.Log("Run " +  (i + 1));
-            //    foreach (ItemBase m in t.rdsResult)
-            //        Debug.Log(m._itemName);
-            //}
-
+            DebugText.text += "\n\n Don't judge me Matt! :) \n Seriously though thanks for playing!";
             //SceneManager.LoadScene("LootScreen");
         }
     }

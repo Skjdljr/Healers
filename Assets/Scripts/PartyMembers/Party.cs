@@ -88,14 +88,13 @@ public class Party : MonoBehaviour
             if (i == MAX_PARTY_SIZE - 1)
             {
                 //HAXXXXXX: 
-
                 //create the player character and add it!!!!!
                 charData = new Druid();
                 _partyMembers[i].Init(charData, _partyType);
             }
             else
             {
-                SpawnRandomClass(i);
+                SpawnRandomClass(i, 10, 25);
             }
         }
     }
